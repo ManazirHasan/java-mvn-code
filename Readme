@@ -1,0 +1,77 @@
+CompletableFuture<User>
+ComplerableFuture.supplyAsync() java 8--  Implemetns Future and Works with CompletionStage to
+coordiante async operation
+
+Reactive paradigm or projectreactor framework-> we need a wait for the framework is to support  it,
+so that it should not complete to wait inside the method the thing to return.
+
+RP: It is a declarative programming paradigm concerned with data streams and the propagation of change.
+**********************
+//two calles , and two waits
+// so we pay with sequential blocking operations
+//we pay with idling threads
+@GetMapping("/user/{userId}")
+public USer getUser(String userId){
+	USer user = userService.gerUser(userId);
+	UserPreferences prefs = userPreferencesService.getPreferences(userId);
+	user.setPreferences(prefs);
+	return user;
+}
+*****************
+
+
+***************
+Iterator
+The iterator pattern is a desing pattern in which an iteratir is used to traverse a container and access the container's elements.
+ It decouples from container for accessing container's element
+
+Observer pattern : when something to observe(moue click)
+
+
+
+CompletableFuture<User>
+
+ComplerableFuture.supplyAsync() java 8--  Implemetns Future and Works with CompletionStage to
+coordiante async operation
+
+Reactive paradigm or projectreactor framework-> we need a wait for the framework is to support  it,
+so that it should not complete to wait inside the method the thing to return.
+
+RP: It is a declarative programming paradigm concerned with data streams and the propagation of change.
+Can say-> It is framework level of handle or suppost the waiting stage of request
+                not the thread inside the method in restcontroller.
+
+1) Different way of thinking aout flow
+2) Different way of thinking about data
+3) Different way of thinking about Flow interface //java 9
+
+**********************
+//two calles , and two waits
+// so we pay with sequential blocking operations
+//we pay with idling threads
+@GetMapping("/user/{userId}")
+public USer getUser(String userId){
+	USer user = userService.gerUser(userId);
+	UserPreferences prefs = userPreferencesService.getPreferences(userId);
+	user.setPreferences(prefs);
+	return user;
+}
+Future and CompletableFuture
+
+CompletableFuture<User> userAsync = ComplerableFuture.supplyAsynce(()-> userService.getUser(userId);
+
+Call userService
+call userProfileService in parallel
+When both return, merge the data structures
+Return merge object
+CompletableFuture<UserPreferences> userPreferencesServiceAsync = ComplerableFuture.supplyAsynce(()-> userPreferencesServiceAsync.getPreferences(userId);
+
+CompletableFuture<Void> bothFutures = CompletableFuture.allOf(userAsynce,userPreferencesService);
+bothFutures.join();
+
+User user = userAsync.join();
+userPreferencesService userPref = userPreferencesServiceAsync.join();
+ser.SetUserPreferences(userPref);
+return user;
+
+*****************
